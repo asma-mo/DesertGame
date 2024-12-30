@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  DesertGame
-//
-//  Created by Asma on 30/12/2024.
-//
-
 import SwiftUI
 
 struct ContentView: View {

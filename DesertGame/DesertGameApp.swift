@@ -1,17 +1,13 @@
-//
-//  DesertGameApp.swift
-//  DesertGame
-//
-//  Created by Asma on 30/12/2024.
-//
-
 import SwiftUI
 
 @main
 struct DesertGameApp: App {
+    @StateObject var gameViewModel = GameViewModel(gameDuration: 20, gameMode: .game)
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashScreen()
+                .environmentObject(gameViewModel)
+                .preferredColorScheme(.dark)
         }
     }
 }
