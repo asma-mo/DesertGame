@@ -1,58 +1,94 @@
-
 import SwiftUI
-struct GameOver: View {
-    var body: some View {
-        ZStack {
-           
-            Image("GameOver")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
 
-            VStack {
-                Spacer() // Push buttons to the bottom
-                
-                HStack {
-                    // Home Button
+struct GameOver: View {
+    @EnvironmentObject var viewModel: GameViewModel
+    
+    var body: some View {
+            if viewModel.gameOver {
+                VStack {
+                    Spacer().frame(height: 30)
+                    
+                    // Game Over Text with VoiceOver Customization
+                    Text("اركض اسرع المرة الجايه ...")
+                        .foregroundColor(.white)
+                        .italic()
+                        .accessibilityElement(children: .combine)  // Combines the Text as one readable element
+                        .accessibilityLabel("لقد خسرت الجولة، حاول الركض أسرع في المرة القادمة.")  // Custom message
+                    
+                    Spacer().frame(height: 30)
+                    
+                    // Restart Button with Custom Label
                     Button(action: {
-                        // Action for Home button
-                        print("Navigating to Home Page")
+                        viewModel.gameOver = false
+                        viewModel.restartGame(backgroundSound: "full-background.mp3")
                     }) {
                         HStack {
-                            Image(systemName: "house.fill") // Home icon
-                            Text(" الرئيسيه")
-                                .font(.headline)
+                            Image(systemName: "arrow.clockwise")
+                                .accessibilityHidden(true)  // Prevent VoiceOver from reading icon separately
+                            
+                            Text("العب مرة ثانية")
+                                .accessibilityLabel("إعادة المحاولة")  // Custom VoiceOver label for button
                         }
                         .padding()
-                        .background(Color.white.opacity(0.8)) // Button background
+                        .frame(maxWidth: .infinity)
+                        .background(Color.white.opacity(0.09))
+                        .foregroundColor(.white)
                         .cornerRadius(10)
-                        .shadow(radius: 5)
                     }
+                    .accessibilityElement(children: .combine)  // Combine button text and icon as one element
+                    .accessibilityHint("اضغط لإعادة اللعب من جديد")  // Add hint for context
                     
-                    Spacer() // Add spacing between buttons
-                    
-                    // Restart Button
-                    Button(action: {
-                        // Action for Restart button
-                        print("Restarting the Game")
-                    }) {
-                        HStack {
-                            Image(systemName: "arrow.clockwise") // Restart icon
-                            Text("اعاده اللعب")
-                                .font(.headline)
-                        }
-                        .padding()
-                        .background(Color.white.opacity(0.8)) // Button background
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
-                    }
+                    .frame(
+                        maxWidth: .infinity,
+                        maxHeight: .infinity,
+                        alignment: .bottom
+                    )
                 }
-                .padding([.leading, .trailing, .bottom], 30) // Adjust spacing around the buttons
+                .padding(40)
+                .frame(maxWidth: 400)
+                
+                // Background Image – Hidden from VoiceOver
+                .background(
+                    Image("gameOver")
+                        .resizable()
+                        .scaledToFill()
+                        .edgesIgnoringSafeArea(.all)
+                        .accessibilityHidden(true)  // Decorative image, no need for VoiceOver
+                )
+                
+                // Overlay with Rounded Rectangle
+                .overlay(
+                    RoundedRectangle(cornerRadius: 25, style: .continuous)
+                        .stroke(myColors.darkNavy.opacity(0.8), lineWidth: 2)
+                        .accessibilityHidden(true)  // Hide overlay from VoiceOver
+                )
+                
+                .shadow(radius: 15)
+                .scaleEffect(1.1)
+                .transition(.opacity.combined(with: .scale))
+                .animation(.spring())
+                .accessibilityElement(children: .contain)
+                .accessibilityLabel("خسرت اللعبة")  // Custom message for entire VStack
+                
+            } else {
+                // Main Game View if game is not over
+                Game()
+                    .environmentObject(viewModel)
+                    .onAppear {
+                        // Switch game mode when appearing
+                        viewModel.switchMode(
+                            to: .game,
+                            duration: 88,
+                            backgroundSound: "full-background.mp3"
+                        )
+                    }
+                    .accessibilityLabel("اللعبة مستمرة")
             }
         }
-    }
+    
 }
 
+// Preview
 #Preview {
     GameOver()
 }
