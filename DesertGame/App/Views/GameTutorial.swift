@@ -52,6 +52,9 @@ struct GameTutorial: View {
                             .transition(.opacity)
                     }
                     
+//                    Text("Remaining Time is: \(viewModel.gameDuration)")
+//                        .foregroundColor(.white)
+                    
                 // b) If tutorial IS complete, automatically move on to the Game
                 } else {
                     Color.clear
@@ -69,8 +72,8 @@ struct GameTutorial: View {
                         // Switch your game mode, start the timer
                         viewModel.switchMode(
                             to: .game,
-                            duration: 88,              // example: 60s game
-                            backgroundSound: "full-background.mp3"
+                            duration: 100,              // example: 60s game
+                            backgroundSound: "game-bkgrd.mp3"
                         )
                     }
             }

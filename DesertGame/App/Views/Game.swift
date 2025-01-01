@@ -20,6 +20,7 @@ struct Game: View {
                         
 
                     }
+                    
                
                 } else {
                     GameOver()

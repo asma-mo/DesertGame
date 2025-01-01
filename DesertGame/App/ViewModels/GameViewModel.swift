@@ -89,37 +89,40 @@ class GameViewModel: ObservableObject {
 //        ]),
 
         // Obstacle 1 - Starts at 5s, lasts 16s (ends at 21s)
-        ObstacleModel(levelNo: 0, obstacleLane: 1, appearenceTime: 5, preObstacleSoundDelay: 4, duration: 8, collisionSound: "hit2.mp3", obstacleSounds: [
+        ObstacleModel(levelNo: 0, obstacleLane: 1, appearenceTime: 34, preObstacleSoundDelay: 13, duration: 2, collisionSound: "hit2.mp3", obstacleSounds: [
             ObstacleSound(obstacleSoundName: "ob1-0.mp3", laneNo: 0),
             ObstacleSound(obstacleSoundName: "ob1-1.mp3", laneNo: 1),
             ObstacleSound(obstacleSoundName: "ob1-2.mp3", laneNo: 2)
         ]),
        
         // Obstacle 2 - Starts at 23s (21 + 2), lasts 9s (ends at 32s)
-        ObstacleModel(levelNo: 1, obstacleLane: 0, appearenceTime: 23, preObstacleSoundDelay: 4, duration: 9, collisionSound: "hit2.mp3", obstacleSounds: [
+        ObstacleModel(levelNo: 1, obstacleLane: 0, appearenceTime: 48, preObstacleSoundDelay: 11, duration: 2, collisionSound: "hit2.mp3", obstacleSounds: [
             ObstacleSound(obstacleSoundName: "ob2-0.mp3", laneNo: 0),
             ObstacleSound(obstacleSoundName: "ob2-1.mp3", laneNo: 1),
             ObstacleSound(obstacleSoundName: "ob2-2.mp3", laneNo: 2)
         ]),
-        
-        // Obstacle 3 - Starts at 34s (32 + 2), lasts 21s (ends at 55s)
-        ObstacleModel(levelNo: 2, obstacleLane: 2, appearenceTime: 34, preObstacleSoundDelay: 4, duration: 8, collisionSound: "hit2.mp3", obstacleSounds: [
+//        
+//        // Obstacle 3 - Starts at 34s (32 + 2), lasts 21s (ends at 55s)
+        ObstacleModel(levelNo: 2, obstacleLane: 2, appearenceTime: 57, preObstacleSoundDelay: 5, duration: 2, collisionSound: "hit2.mp3", obstacleSounds: [
             ObstacleSound(obstacleSoundName: "ob3-0.mp3", laneNo: 0),
             ObstacleSound(obstacleSoundName: "ob3-1.mp3", laneNo: 1),
             ObstacleSound(obstacleSoundName: "ob3-2.mp3", laneNo: 2)
         ]),
-        
+//        
         // Obstacle 4 - Starts at 57s (55 + 2), lasts 16s (ends at 73s)
-        ObstacleModel(levelNo: 3, obstacleLane: 1, appearenceTime: 68, preObstacleSoundDelay: 4, duration: 16, collisionSound: "hit2.mp3", obstacleSounds: [
+        ObstacleModel(levelNo: 3, obstacleLane: 1, appearenceTime: 94, preObstacleSoundDelay: 10, duration: 2, collisionSound: "hit2.mp3", obstacleSounds: [
             ObstacleSound(obstacleSoundName: "ob4-0.mp3", laneNo: 0),
             ObstacleSound(obstacleSoundName: "ob4-1.mp3", laneNo: 1),
             ObstacleSound(obstacleSoundName: "ob4-2.mp3", laneNo: 2)
         ])
-    ]
+   ]
 
 
     let gameDialog: [DialogModel] = [
-        DialogModel(dialogSoundName: "dialog-After-ob3.mp3", dialogApperance: 58),
+        DialogModel(dialogSoundName: "first-dialog.mp3", dialogApperance: 1),
+        DialogModel(dialogSoundName: "heartbeat.mp3", dialogApperance: 24),
+        //DialogModel(dialogSoundName: "ob3-dialog.mp3", dialogApperance: 59),
+        DialogModel(dialogSoundName: "heartbeat.mp3", dialogApperance: 86),
     ]
     
     
@@ -194,7 +197,7 @@ class GameViewModel: ObservableObject {
         currentlevel = 0
         
         soundManager.stopAllSounds()
-        soundManager.playSoundFromFile(named: "backgroundSound.wav", player: &soundManager.backgroundAudioPlayer, soundInLoop: true)
+        soundManager.playSoundFromFile(named: "Tut-bkg.mp3", player: &soundManager.backgroundAudioPlayer, soundInLoop: true)
         
         setupGameTimer(gameMode: gameMood)  // Restart the timer
         print("Game Restarted")
@@ -202,11 +205,14 @@ class GameViewModel: ObservableObject {
 
     func pauseGameTimer() {
         gameTimer?.invalidate()
+        soundManager.stopSound(for: &soundManager.backgroundAudioPlayer)
+        soundManager.playSoundFromFile(named: "HororSound.mp3", player: &soundManager.backgroundAudioPlayer, soundInLoop: true)
         print("Game Paused")
     }
     
     func resumeGameTimer() {
         setupGameTimer(gameMode: gameMood)
+        soundManager.playSoundFromFile(named: "Tut-bkg.mp3", player: &soundManager.backgroundAudioPlayer, soundInLoop: true)
         print("Game Resumed")
     }
     
@@ -250,7 +256,7 @@ func handleSwipe(direction: SwipeDirection) {
     }
     lastSwipeTime = now
     
-    print("fuck you \(gameObstacles[currentlevel].obstacleSounds[currentLane].obstacleSoundName)")
+    //print((gameObstacles[currentlevel].obstacleSounds[currentLane].obstacleSoundName))
     
     switch direction {
     case .left:
