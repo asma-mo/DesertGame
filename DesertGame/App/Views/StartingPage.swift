@@ -10,7 +10,9 @@ struct StartingPage: View {
             if !showOpeningScene{
                 GifWebView(gifName: "StarryBackground")
                 // .ignoresSafeArea()
-                
+                    .accessibilityElement()
+                    .accessibilityLabel("A dark background")
+                    .accessibilityHint("A pitch-black background with scattered glowing dots resembling twinkling stars, varying in brightness. Moving meteors streak through the scene like threads of light, adding motion and life to the vast, enchanting universe")
                 Button(action: {
                     showOpeningScene = true
                 }) {

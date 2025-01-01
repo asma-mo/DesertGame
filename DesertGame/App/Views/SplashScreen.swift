@@ -19,7 +19,11 @@ struct SplashScreen: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 1000, height: 1000)
+                        .opacity(opacity)
                         .padding()
+                        .accessibilityElement()
+                        .accessibilityLabel("splash screen")
+                        .accessibilityHint("person in a desert and SAND SOUND glowing")
                         .onAppear {
                             withAnimation(.easeInOut(duration: 1.5)) {
                                 opacity = 1.0
