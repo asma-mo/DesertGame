@@ -20,7 +20,7 @@ struct GameOver: View {
                     // Restart Button with Custom Label
                     Button(action: {
                         viewModel.gameOver = false
-                        viewModel.restartGame(backgroundSound: "full-background.mp3")
+                        viewModel.restartGame(backgroundSound: "game-bkgrd.mp3")
                     }) {
                         HStack {
                             Image(systemName: "arrow.clockwise")

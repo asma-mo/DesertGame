@@ -11,7 +11,7 @@ struct OpeningScene: View {
         NavigationStack {
             if !showTutorial{
                 ZStack {
-                    FullScreenVideoPlayer(videoName: "oppening", videoExtension: "MOV", isVideoEnded: $showTutorial)
+                    FullScreenVideoPlayer(videoName: "Start", videoExtension: "MOV", isVideoEnded: $showTutorial)
                         .ignoresSafeArea()
                     
                     VStack {

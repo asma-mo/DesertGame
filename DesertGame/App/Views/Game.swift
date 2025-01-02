@@ -12,7 +12,7 @@ struct Game: View {
                 if !viewModel.gameOver {
                     if viewModel.gameEnds {
                         FullScreenVideoPlayer(
-                            videoName: "ending",
+                            videoName: "End",
                             videoExtension: "MOV",
                             isVideoEnded: $showHomePage
                         )
