@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		721678142D23020900636EF8 /* DesertGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesertGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		721678142D23020900636EF8 /* Sand Sound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sand Sound.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,7 +40,7 @@
 		721678152D23020900636EF8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				721678142D23020900636EF8 /* DesertGame.app */,
+				721678142D23020900636EF8 /* Sand Sound.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		721678132D23020900636EF8 /* DesertGame */ = {
+		721678132D23020900636EF8 /* Sand Sound */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 721678222D23020B00636EF8 /* Build configuration list for PBXNativeTarget "DesertGame" */;
+			buildConfigurationList = 721678222D23020B00636EF8 /* Build configuration list for PBXNativeTarget "Sand Sound" */;
 			buildPhases = (
 				721678102D23020900636EF8 /* Sources */,
 				721678112D23020900636EF8 /* Frameworks */,
@@ -63,11 +63,11 @@
 			fileSystemSynchronizedGroups = (
 				721678162D23020900636EF8 /* DesertGame */,
 			);
-			name = DesertGame;
+			name = "Sand Sound";
 			packageProductDependencies = (
 			);
 			productName = DesertGame;
-			productReference = 721678142D23020900636EF8 /* DesertGame.app */;
+			productReference = 721678142D23020900636EF8 /* Sand Sound.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				721678132D23020900636EF8 /* DesertGame */,
+				721678132D23020900636EF8 /* Sand Sound */,
 			);
 		};
 /* End PBXProject section */
@@ -314,7 +314,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		721678222D23020B00636EF8 /* Build configuration list for PBXNativeTarget "DesertGame" */ = {
+		721678222D23020B00636EF8 /* Build configuration list for PBXNativeTarget "Sand Sound" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				721678232D23020B00636EF8 /* Debug */,
