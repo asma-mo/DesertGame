@@ -1,12 +1,7 @@
-//
-//  slideShow.swift
-//  DesertGame
-//
-//  Created by Raghad  on 30/06/1446 AH.
-//
+
+
 
 import SwiftUI
-
 
 struct SlidingPagesView: View {
     @State private var showStartingPage: Bool = false
@@ -16,12 +11,14 @@ struct SlidingPagesView: View {
             StartingPage()
         } else {
             TabView {
-                PageView(content: "ثبت الهاتف عموديًا!")
+                PageView(content: "ثبت الهاتف عموديًا!", showSkip: false, skipAction: {})
                     .accessibilityLabel("ثبت الهاتف عموديًا!")
                     .background(Color.black)
                     .tag(0)
                 
-                PageView(content: "دع انتباهك علي تفاصيل الاصوات!")
+                PageView(content: "دع انتباهك علي تفاصيل الاصوات!", showSkip: true, skipAction: {
+                    showStartingPage = true
+                })
                     .accessibilityLabel("دع انتباهك على تفاصيل الاصوات!")
                     .background(Color.black)
                     .tag(1)
@@ -29,25 +26,38 @@ struct SlidingPagesView: View {
             .tabViewStyle(PageTabViewStyle())
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
             .ignoresSafeArea()
-            .onAppear {
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    showStartingPage = true
-                }
-            }
         }
     }
 }
 
 struct PageView: View {
     var content: String
+    var showSkip: Bool
+    var skipAction: () -> Void
     
     var body: some View {
         VStack {
+            if showSkip {
+                HStack {
+                    Spacer()
+                    Button(action: skipAction) {
+                        Text("Skip")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                }
+                .padding(.trailing)
+            }
+            
+            Spacer()
+            
             Text(content)
                 .font(.largeTitle)
                 .foregroundColor(.white)
                 .padding()
+            
+            Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
